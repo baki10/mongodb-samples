@@ -10,11 +10,12 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.util.JSON;
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Model
 public class BookStore {
@@ -85,5 +86,12 @@ public class BookStore {
       q.put("title", java.util.regex.Pattern.compile(filter));
       return collection.find(q);
     }
+  }
+
+  public Book checkAvailability(Book book) {
+    Gson gson = new Gson();
+    DBObject query = new BasicDBObject("title", book.getTitle()).append("author", book.getAuthor());
+    DBObject obj = getDbCollection().findOne(query);
+    return obj == null ? null : gson.fromJson(obj.toString(), Book.class);
   }
 }
