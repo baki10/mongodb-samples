@@ -1,3 +1,4 @@
 rootProject.name = 'mongodb-samples'
 include 'javaee7-mongodb-web'
+include 'jpa-mongodb'
 

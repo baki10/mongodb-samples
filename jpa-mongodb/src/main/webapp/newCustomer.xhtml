@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <style type="text/css">
+        @import url("css/store.css");
+    </style>
+</h:head>
+<h:body>
+
+    <h:panelGrid columns="1" border="1" styleClass="spring">
+        <f:facet name="header"><h:outputText value="New Customer"/></f:facet>
+        <h:form id="newCustomer">
+            <h:panelGrid columns="2" border="1" styleClass="spring">
+                <f:facet name="header">
+                    <h:outputText value="Insert new Customer"/>
+                </f:facet>
+                <h:outputText value="Name"/>
+                <h:inputText value="#{manager.customerName}"/>
+                <h:outputText value="Country"/>
+                <h:inputText value="#{manager.customerCountry}"/>
+
+                <h:commandButton action="#{manager.createCustomer}" value="Insert Customer"/>
+                <h:commandButton action="index" value="Back"/>
+            </h:panelGrid>
+        </h:form>
+    </h:panelGrid>
+    <h:messages style="color:red;margin:8px;"/>
+</h:body>
+</html>
